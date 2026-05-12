@@ -1,0 +1,22 @@
+query = """
+PREFIX ciber: <http://www.miOntologia.org/ciberseguridad#>
+
+SELECT ?control
+WHERE {
+    ?control ciber:mitiga ciber:Phishing_Corporativo .
+}
+"""
+
+print("\n=== RESULTADOS DE CONSULTA SPARQL ===\n")
+
+resultados = list(g.query(query))
+
+if resultados:
+
+    for row in resultados:
+        nombre_control = str(row.control).split("#")[-1]
+
+        print("Control encontrado:", nombre_control)
+
+else:
+    print("No se encontraron controles asociados.")
